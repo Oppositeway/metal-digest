@@ -68,5 +68,5 @@ source: 'https://example.com/original'
 
 - Статьи пишутся на русском языке
 - Slug файла = дата + ключевое слово, например `2026-03-31-metallica-tour.md`
-- Теги из: `metal`, `death-metal`, `black-metal`, `thrash`, `doom`, `releases`, `tours`, `reviews`
+- Теги из: `metal`, `death-metal`, `black-metal`, `thrash`, `doom`, `post-metal`, `hardcore`, `metalcore`, `sludge`, `stoner`, `progressive`, `industrial`, `rock`, `alt-rock`, `releases`, `tours`, `reviews`, `news`
 - Не коммитить `node_modules/` и `.astro/`
