@@ -10,6 +10,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+const allTags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
 ---
 
 <!doctype html>
@@ -84,16 +85,64 @@ const posts = (await getCollection('blog')).sort(
 					font-size: 1.563em;
 				}
 			}
+		.tag-filters {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+				margin-bottom: 1.5rem;
+			}
+			.tag-btn {
+				padding: 0.25em 0.75em;
+				border: 1px solid rgb(var(--gray-light));
+				border-radius: 999px;
+				background: white;
+				color: rgb(var(--gray-dark));
+				font-size: 0.8em;
+				cursor: pointer;
+				font-family: inherit;
+				transition: 0.15s ease;
+			}
+			.tag-btn:hover,
+			.tag-btn.active {
+				background: var(--accent);
+				border-color: var(--accent);
+				color: white;
+			}
+			.post-tags {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.3rem;
+				margin: 0.3rem 0 0;
+			}
+			.tag-link {
+				font-size: 0.7em;
+				padding: 0.15em 0.5em;
+				border-radius: 999px;
+				border: 1px solid rgb(var(--gray-light));
+				color: rgb(var(--gray));
+				text-decoration: none;
+				transition: 0.15s ease;
+			}
+			.tag-link:hover {
+				border-color: var(--accent);
+				color: var(--accent);
+			}
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
 			<section>
-				<ul>
+				<nav class="tag-filters">
+						<button class="tag-btn" data-tag="">Все</button>
+						{allTags.map((tag) => (
+							<button class="tag-btn" data-tag={tag}>{tag}</button>
+						))}
+					</nav>
+					<ul id="post-list">
 					{
 						posts.map((post) => (
-							<li>
+							<li data-tags={post.data.tags.join(' ')}>
 								<a href={`/blog/${post.id}/`}>
 									{post.data.heroImage && (
 										<Image width={720} height={360} src={post.data.heroImage} alt="" />
@@ -102,6 +151,19 @@ const posts = (await getCollection('blog')).sort(
 									<p class="date">
 										<FormattedDate date={post.data.pubDate} />
 									</p>
+									{post.data.tags.length > 0 && (
+										<p class="post-tags">
+											{post.data.tags.map((tag) => (
+												<a
+													href={`/blog?tag=${tag}`}
+													class="tag-link"
+													onclick="event.stopPropagation()"
+												>
+													{tag}
+												</a>
+											))}
+										</p>
+									)}
 								</a>
 							</li>
 						))
@@ -110,5 +172,36 @@ const posts = (await getCollection('blog')).sort(
 			</section>
 		</main>
 		<Footer />
+	<script>
+	function applyFilter(tag: string) {
+		document.querySelectorAll<HTMLButtonElement>('.tag-btn').forEach((btn) => {
+			btn.classList.toggle('active', btn.dataset.tag === tag);
+		});
+		document.querySelectorAll<HTMLLIElement>('#post-list li').forEach((li) => {
+			if (!tag) {
+				li.hidden = false;
+			} else {
+				const tags = li.dataset.tags ?? '';
+				li.hidden = !tags.split(' ').includes(tag);
+			}
+		});
+	}
+
+	document.addEventListener('DOMContentLoaded', () => {
+		const params = new URLSearchParams(window.location.search);
+		applyFilter(params.get('tag') ?? '');
+
+		document.querySelectorAll<HTMLButtonElement>('.tag-btn').forEach((btn) => {
+			btn.addEventListener('click', () => {
+				const tag = btn.dataset.tag ?? '';
+				const url = tag
+					? `${window.location.pathname}?tag=${tag}`
+					: window.location.pathname;
+				history.pushState({}, '', url);
+				applyFilter(tag);
+			});
+		});
+	});
+</script>
 	</body>
 </html>
