@@ -8,8 +8,11 @@ function stripMarkdown(text: string): string {
     .replace(/`{3}[\s\S]*?`{3}/gm, '')       // fenced code blocks
     .replace(/`[^`]+`/g, '')                 // inline code
     .replace(/^#{1,6}\s+/gm, '')             // headings
-    .replace(/\*\*([^*]+)\*\*/g, '$1')       // bold
-    .replace(/\*([^*]+)\*/g, '$1')           // italic
+    .replace(/\*{3}(.+?)\*{3}/g, '$1')       // bold+italic
+    .replace(/\*\*(.+?)\*\*/g, '$1')         // bold
+    .replace(/\*(.+?)\*/g, '$1')             // italic
+    .replace(/_{2}(.+?)_{2}/g, '$1')         // bold underscore
+    .replace(/_(.+?)_/g, '$1')               // italic underscore
     .replace(/^[-*+]\s+/gm, '')              // unordered lists
     .replace(/^\d+\.\s+/gm, '')              // ordered lists
     .replace(/^>\s+/gm, '')                  // blockquotes
