@@ -143,9 +143,10 @@ const allTags = [...new Set(posts.flatMap((p) => p.data.tags))]
 			<section>
 				<nav class="type-filters">
 						<button class="tag-btn" data-tag="">Все</button>
+						<button class="tag-btn" data-tag="digest">Дайджест</button>
 						<button class="tag-btn" data-tag="news">Новости</button>
-						<button class="tag-btn" data-tag="reviews">Рецензии</button>
-						<button class="tag-btn" data-tag="tours">Туры</button>
+						<button class="tag-btn" data-tag="review">Рецензии</button>
+						<button class="tag-btn" data-tag="tour">Туры</button>
 					</nav>
 					<nav class="tag-filters">
 						<button class="tag-btn" data-tag="">Все</button>
@@ -156,7 +157,7 @@ const allTags = [...new Set(posts.flatMap((p) => p.data.tags))]
 					<ul id="post-list">
 					{
 						posts.map((post) => (
-							<li data-tags={post.data.tags.join(' ')}>
+							<li data-tags={post.data.tags.join(' ')} data-type={post.data.type}>
 								<a href={`/blog/${post.id}/`}>
 									{post.data.heroImage && (
 										<Image width={720} height={360} src={post.data.heroImage} alt="" />
@@ -187,34 +188,45 @@ const allTags = [...new Set(posts.flatMap((p) => p.data.tags))]
 		</main>
 		<Footer />
 	<script>
-	function applyFilter(tag: string) {
-		document.querySelectorAll<HTMLButtonElement>('.tag-btn').forEach((btn) => {
-			btn.classList.toggle('active', btn.dataset.tag === tag);
-		});
+	let activeType = '';
+	let activeTag = '';
+
+	function applyFilters() {
 		document.querySelectorAll<HTMLLIElement>('#post-list li').forEach((li) => {
-			if (!tag) {
-				li.hidden = false;
-			} else {
-				const tags = li.dataset.tags ?? '';
-				li.hidden = !tags.split(' ').includes(tag);
-			}
+			const matchesType = !activeType || li.dataset.type === activeType;
+			const matchesTag = !activeTag || (li.dataset.tags ?? '').split(' ').includes(activeTag);
+			li.hidden = !(matchesType && matchesTag);
 		});
 	}
 
 	document.addEventListener('DOMContentLoaded', () => {
 		const params = new URLSearchParams(window.location.search);
-		applyFilter(params.get('tag') ?? '');
+		activeType = params.get('type') ?? '';
+		activeTag = params.get('tag') ?? '';
 
-		document.querySelectorAll<HTMLButtonElement>('.tag-btn').forEach((btn) => {
+		document.querySelectorAll<HTMLButtonElement>('.type-filters .tag-btn').forEach((btn) => {
+			btn.classList.toggle('active', btn.dataset.tag === activeType);
 			btn.addEventListener('click', () => {
-				const tag = btn.dataset.tag ?? '';
-				const url = tag
-					? `${window.location.pathname}?tag=${tag}`
-					: window.location.pathname;
-				history.pushState({}, '', url);
-				applyFilter(tag);
+				activeType = btn.dataset.tag ?? '';
+				document.querySelectorAll<HTMLButtonElement>('.type-filters .tag-btn').forEach((b) => {
+					b.classList.toggle('active', b.dataset.tag === activeType);
+				});
+				applyFilters();
 			});
 		});
+
+		document.querySelectorAll<HTMLButtonElement>('.tag-filters .tag-btn').forEach((btn) => {
+			btn.classList.toggle('active', btn.dataset.tag === activeTag);
+			btn.addEventListener('click', () => {
+				activeTag = btn.dataset.tag ?? '';
+				document.querySelectorAll<HTMLButtonElement>('.tag-filters .tag-btn').forEach((b) => {
+					b.classList.toggle('active', b.dataset.tag === activeTag);
+				});
+				applyFilters();
+			});
+		});
+
+		applyFilters();
 	});
 </script>
 	</body>

@@ -2,7 +2,8 @@
 title: 'Дайджест: релизы и туры — апрель 2026'
 description: 'Nervosa выпустили шестой альбом, Immolation и At The Gates возвращаются с новым материалом, Melvins объединились с Napalm Death, Babymetal анонсировали тур по Северной и Латинской Америке.'
 pubDate: '2026-04-06'
-tags: ['metal', 'death-metal', 'thrash', 'doom', 'releases', 'tours', 'news']
+type: 'digest'
+tags: ['metal', 'death-metal', 'thrash', 'doom', 'releases']
 source: 'https://loudwire.com/2026-hard-rock-metal-album-release-calendar/'
 ---
 

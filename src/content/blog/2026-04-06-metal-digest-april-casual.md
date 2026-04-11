@@ -2,7 +2,8 @@
 title: 'Апрель начался: что мы слушаем прямо сейчас'
 description: 'Nervosa с новым альбомом, Immolation возвращаются на Nuclear Blast, Melvins и Napalm Death объединились, At The Gates завершают месяц — плюс туры.'
 pubDate: '2026-04-06'
-tags: ['metal', 'death-metal', 'thrash', 'doom', 'releases', 'tours', 'news']
+type: 'digest'
+tags: ['metal', 'death-metal', 'thrash', 'doom', 'releases']
 source: 'https://loudwire.com/2026-hard-rock-metal-album-release-calendar/'
 ---
 
