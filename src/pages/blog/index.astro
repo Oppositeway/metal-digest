@@ -10,7 +10,10 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
-const allTags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
+const TYPE_TAGS = ['news', 'reviews', 'tours'];
+const allTags = [...new Set(posts.flatMap((p) => p.data.tags))]
+	.filter((t) => !TYPE_TAGS.includes(t))
+	.sort();
 ---
 
 <!doctype html>
@@ -85,7 +88,12 @@ const allTags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
 					font-size: 1.563em;
 				}
 			}
-		.tag-filters {
+		.type-filters {
+				display: flex;
+				gap: 0.5rem;
+				margin-bottom: 0.75rem;
+			}
+			.tag-filters {
 				display: flex;
 				flex-wrap: wrap;
 				gap: 0.5rem;
@@ -133,7 +141,13 @@ const allTags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
 		<Header />
 		<main>
 			<section>
-				<nav class="tag-filters">
+				<nav class="type-filters">
+						<button class="tag-btn" data-tag="">Все</button>
+						<button class="tag-btn" data-tag="news">Новости</button>
+						<button class="tag-btn" data-tag="reviews">Рецензии</button>
+						<button class="tag-btn" data-tag="tours">Туры</button>
+					</nav>
+					<nav class="tag-filters">
 						<button class="tag-btn" data-tag="">Все</button>
 						{allTags.map((tag) => (
 							<button class="tag-btn" data-tag={tag}>{tag}</button>
