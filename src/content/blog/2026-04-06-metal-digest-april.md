@@ -4,7 +4,10 @@ description: 'Nervosa выпустили шестой альбом, Immolation �
 pubDate: '2026-04-06'
 type: 'digest'
 tags: ['metal', 'death-metal', 'thrash', 'doom', 'releases']
-source: 'https://loudwire.com/2026-hard-rock-metal-album-release-calendar/'
+sources:
+  - 'https://loudwire.com/2026-hard-rock-metal-album-release-calendar/'
+  - 'https://blabbermouth.net'
+  - 'https://metal-archives.com'
 ---
 
 ## Nervosa — *Slave Machine* (Napalm Records, 3 апреля)

@@ -14,7 +14,7 @@ const blog = defineCollection({
 			updatedDate: z.coerce.date().optional(),
 			heroImage: z.optional(image()),
 			type: z.enum(['digest', 'review', 'news', 'tour']).default('digest'),
-			source: z.string().url().optional(),
+			sources: z.array(z.string().url()).default([]),
 			tags: z.array(z.string()).default([]),
 		}),
 });

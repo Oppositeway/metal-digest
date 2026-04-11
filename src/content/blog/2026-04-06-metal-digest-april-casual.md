@@ -4,7 +4,10 @@ description: 'Nervosa с новым альбомом, Immolation возвращ�
 pubDate: '2026-04-06'
 type: 'digest'
 tags: ['metal', 'death-metal', 'thrash', 'doom', 'releases']
-source: 'https://loudwire.com/2026-hard-rock-metal-album-release-calendar/'
+sources:
+  - 'https://loudwire.com/2026-hard-rock-metal-album-release-calendar/'
+  - 'https://blabbermouth.net'
+  - 'https://metal-archives.com'
 ---
 
 Апрель выдался плотным — пока мы добрались до конца списка, уже накопилось на несколько вечеров прослушивания. Разбираем по порядку.

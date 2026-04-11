@@ -4,7 +4,9 @@ description: 'Paradise Lost выпустили новый альбом, Candlema
 pubDate: '2026-03-25'
 type: 'digest'
 tags: ['metal', 'doom', 'death-metal', 'releases']
-source: 'https://blabbermouth.net'
+sources:
+  - 'https://blabbermouth.net'
+  - 'https://metal-archives.com'
 ---
 
 ## Paradise Lost — *Obsidian* (Nuclear Blast, 20 марта)

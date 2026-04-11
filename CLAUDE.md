@@ -59,7 +59,8 @@ description: 'Краткое описание в 2–3 предложения.'
 pubDate: '2026-03-31'
 type: 'digest'
 tags: ['metal', 'thrash', 'releases']
-source: 'https://example.com/original'
+sources:
+  - 'https://example.com/original'
 ---
 
 Текст статьи.
