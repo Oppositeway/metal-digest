@@ -1,13 +1,15 @@
 ---
-title: 'Пять post-metal альбомов 2024 года, которые прошли мимо'
-description: 'Малоизвестные релизы 2024-го в жанре post-metal и смежных территориях: от медленного дронового траура до постиндустриальных текстур.'
+title: 'Пять post-metal альбомов 2023–2024 годов, которые прошли мимо'
+description: 'Малоизвестные релизы 2023–2024 годов в жанре post-metal и смежных территориях: от медленного дронового траура до постиндустриальных текстур.'
 pubDate: '2026-04-15'
 type: 'digest'
 tags: ['post-metal', 'doom', 'sludge', 'metal']
 sources:
-  - 'https://bandcamp.com'
-  - 'https://metalinjection.net/reviews'
-  - 'https://loudersound.com/reviews'
+  - 'https://spotlights.bandcamp.com/album/alchemy-for-the-dead'
+  - 'https://dvne.bandcamp.com/album/voidkind'
+  - 'https://ahab.bandcamp.com/album/the-coral-tombs'
+  - 'https://fysiskformat.bandcamp.com/album/massive-conspiracy-against-all-life'
+  - 'https://komatsuband.bandcamp.com/album/ritual-decay'
 ---
 
 **Spotlights — *Alchemy for the Dead*** (Ipecac Recordings)
